@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAgendaPlacesTable extends Migration
+class CreateAccessCardsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateAgendaPlacesTable extends Migration
      */
     public function up()
     {
-        Schema::create('agenda_places', function (Blueprint $table) {
+        Schema::create('access_cards', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('place_id')->unsigned();
             $table->integer('user_id')->unsigned();
 
-            $table->date('date');
+            $table->string('serial_number',15);
+            $table->tinyInteger('status', False, True)->default(1);
             $table->timestamps();
 
-            $table->foreign('place_id')->references('id')->on('places');
             $table->foreign('user_id')->references('id')->on('users');
         });
     }
@@ -33,6 +32,6 @@ class CreateAgendaPlacesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('agenda_places');
+        Schema::dropIfExists('access_cards');
     }
 }

@@ -15,7 +15,22 @@ class CreateEventsTable extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id')->unsigned();
+            $table->integer('division_id')->unsigned();
+            $table->integer('condominium_id')->unsigned();
+            $table->integer('category_id')->unsigned();
+            $table->integer('status_id')->unsigned();
+
+            $table->string('desciption', 250);
+            $table->date('event_date');
+            $table->time('event_time');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('division_id')->references('id')->on('divisions');
+            $table->foreign('condominium_id')->references('id')->on('condominiums');
+            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('status_id')->references('id')->on('statuses');
         });
     }
 
