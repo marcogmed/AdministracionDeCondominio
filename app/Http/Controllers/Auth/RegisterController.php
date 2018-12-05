@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Role;
+use App\Condominium;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -49,9 +51,21 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:100'],
+            'lastname' => ['required', 'string', 'max:150'],
+            'surname' => ['required', 'string', 'max:150'],
+            'phone_number' => ['required', 'string', 'max:15'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
+
+            /*'role_id' => ['required', 'integer'],
+            'division_id' => ['required', 'integer'],
+            'condominium_id' => ['required', 'integer'],
+           
+            'is_owner' => ['required','tinyInteger','True'],
+            'is_provider' => ['required','tinyInteger','False'],
+            'is_active' => ['required','tinyInteger','True'],
+*/
         ]);
     }
 
@@ -65,8 +79,23 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
+            'lastname'=> $data['lastname'],
+            'surname'=> $data['surname'],
+            'house_number' => $data['house_number'],
+            'phone_number' => $data['phone_number'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+
+            /*'role_id'=> $data['role_id'],
+            'division_id' => $data['division_id'],
+            'condominium_id' => $data['condominium_id'],
+
+            'is_owner'=> $data['is_owner'],
+            'is_provider'=> $data ['is_provider'],
+            'is_active'=> $data['is_active'],
+            */
+
+
         ]);
     }
 }
