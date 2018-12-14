@@ -18,10 +18,10 @@ class CreateEventsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('division_id')->unsigned();
             $table->integer('condominium_id')->unsigned();
-            $table->integer('category_id')->unsigned();
+            $table->integer('category_event_id')->unsigned();
             $table->integer('status_id')->unsigned();
 
-            $table->string('desciption', 250);
+            $table->string('description', 250);
             $table->date('event_date');
             $table->time('event_time');
             $table->timestamps();
@@ -29,7 +29,7 @@ class CreateEventsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('division_id')->references('id')->on('divisions');
             $table->foreign('condominium_id')->references('id')->on('condominiums');
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('category_event_id')->references('id')->on('categories_events');
             $table->foreign('status_id')->references('id')->on('statuses');
         });
     }
