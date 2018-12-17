@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Event;
 
-class Category extends Model
+class CategoryEvent extends Model
 {
     //
 

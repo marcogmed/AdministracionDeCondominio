@@ -19,34 +19,50 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/categories', array(
-	'as'=>'categories',
+//******************** Event Categories ********************
+
+Route::get('/categoryEvents', array(
+	'as'=>'categoryEvents',
 	//'middleware' => 'auth',
-	'uses' => 'CategoryController@index' 
+	'uses' => 'CategoryEventController@index' 
 ));
 
 Route::post('/save-category', array( 
 'as'=>'saveCategory',
-'uses'=> 'CategoryController@save'
+'uses'=> 'CategoryEventController@save'
 ));
 
 Route::get('/create-Category', array(
 	'as'=> 'createCategory',
-	'uses'=> 'CategoryController@create'
+	'uses'=> 'CategoryEventController@create'
 ));
 
 Route::get('/edit-Category/{category}', array(
-	'as'=> 'editCategory',
+	'as'=> 'editCategoryEvent',
 	//'middleware' => 'auth',
-	'uses'=>'CategoryController@edit'
+	'uses'=>'CategoryEventController@edit'
 ));
 
 Route::post('/update-category/{category}', array(
 	'as'=> 'updateCategory',
-	'uses'=> 'CategoryController@update'
+	'uses'=> 'CategoryEventController@update'
 ));
 
 Route::get('/delete-category/{category}', array (
 	'as' => 'deleteCategory',
-	'uses' => 'CategoryController@destroy'
+	'uses' => 'CategoryEventController@destroy'
+));
+
+
+//******************** Category Finance Moves ********************
+
+Route::get('financeCategory', array(
+	'as'=>'finaceCategory',
+	//'middleware' => 'auth',
+	'uses' => 'CategoryFinanceMoveController@index' 
+));
+
+Route::get('/create-FinanceCategory', array(
+	'as'=> 'createFinanceCategory',
+	'uses'=> 'CategoryFinanceMoveController@create'
 ));

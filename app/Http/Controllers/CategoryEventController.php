@@ -14,9 +14,9 @@ class CategoryEventController extends Controller
      */
     public function index()
     {
-        $categories = categoryevent::orderBy('description')->paginate(7);
+        $categoriesevents = CategoryEvent::orderBy('description')->paginate(7);
 
-        return view('categoryevent.list', compact('categoriesevents'));
+        return view('categoryEvent.list', compact('categoriesevents'));
     }
 
     /**
