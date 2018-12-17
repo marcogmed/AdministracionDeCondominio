@@ -2,8 +2,9 @@
 @section('content')
 
 <div class="container">
-	<h2>Categories <a href="{{route('createCategory')}}"class="btn btn-success">+</a>
+  <h2>Finance Categories <a href="{{route('createFinanceCategory')}}"class="btn btn-success"><i class="fas fa-buysellads"></i></a>
         
+
         <div class="box">
             <div class="container-1">
                 <input type="search" id="search" placeholder="search...">
@@ -13,28 +14,26 @@
 
 
 
-
-
-	@if (session('message'))
+  @if (session('message'))
         <div class="alert alert-success" role="alert">
             {{ session('message') }}
         </div>
     @endif
     <table class="table table-hover">
-    	<thead class="thead-dark">
-    		<tr>
-    			<th>Category Description</th>
+      <thead class="thead-dark">
+        <tr>
+          <th>Category Description</th>
   </div>
 
-    		</tr>
-    		@foreach ($categories as $category)
-    		
-    			<tr>
-    			<td> {{ $category->description }}</td>
-    			<td> 
-    				<a href="{{route('editCategory', ['category_id'=>$category->id])}}" class="btn btn-primary">Edit</a>
-    				&nbsp;
-    				<a href="#deleteModal{{$category->id}}" data-toggle="modal" class="btn btn-danger">Delete</a>
+        </tr>
+        @foreach ($catFinMov as $categoryFinance)
+        
+          <tr>
+          <td> {{ $categoryFiance->description }}</td>
+          <td> 
+            <a href="{{route('editCategory', ['category_id'=>$category->id])}}" class="btn btn-primary">Edit</a>
+            &nbsp;
+            <a href="#deleteModal{{$category->id}}" data-toggle="modal" class="btn btn-danger">Delete</a>
                         <!-- Modal -->
                         <div class="modal fade" id="deleteModal{{$category->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                           <div class="modal-dialog" role="document">
@@ -54,13 +53,13 @@
                               </div>
                             </div>
                           </div>
-                        </div>	
-    			</td>
-			</tr>
-			@endforeach
-    	</thead>
-    </table>	
-    {{ $categories-> links()}}
+                        </div>  
+          </td>
+      </tr>
+      @endforeach
+      </thead>
+    </table>  
+    {{ $catFinMov-> links()}}
 </div>
 
 @endsection

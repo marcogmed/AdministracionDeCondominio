@@ -14,7 +14,8 @@ class CategoryFinanceMoveController extends Controller
      */
     public function index()
     {
-        //
+        $catFinMov = CategoryFinanceMove::orderBy ('description')->paginate(9);
+        return view ('FinanceCategory.listFinanceCategory', compact('catFinMov'));
     }
 
     /**
