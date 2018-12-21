@@ -6,7 +6,7 @@
 		<h2>Create Category</h2>
 	</div>
 	<div class="row">
-		<form method="post" action="{{route('saveCategory')}}" class="col-lg-7">
+		<form method="post" action="{{route('saveEventCategory')}}" class="col-lg-7">
 			{!! csrf_field() !!}
 
 			@if($errors->any())
