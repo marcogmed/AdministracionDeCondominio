@@ -29,7 +29,7 @@ class CreateEventsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('division_id')->references('id')->on('divisions');
             $table->foreign('condominium_id')->references('id')->on('condominiums');
-            $table->foreign('category_event_id')->references('id')->on('categories_events');
+            $table->foreign('category_event_id')->references('id')->on('category_events');
             $table->foreign('status_id')->references('id')->on('statuses');
         });
     }

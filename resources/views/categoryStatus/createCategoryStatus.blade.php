@@ -3,10 +3,10 @@
 
 <div class="container">
 	<div class="page-header">
-		<h2>Edit Category event: <p>{{$categoryEvent->description}}</p></h2>
+		<h2>Create Category Status</h2>
 	</div>
 	<div class="row">
-		<form method="post" action="{{route ('updateCategory', ['category_id'=> $category->id])}}" class="col-lg-7">
+		<form method="post" action="{{route('saveStatusCategory')}}" class="col-lg-7">
 			{!! csrf_field() !!}
 
 			@if($errors->any())
@@ -18,11 +18,12 @@
 				</ul>
 			</div>
 			@endif
+
 			<div class="form-group">
 				<label for="Descripción">Description</label>
-				<input type="text"class="form-control" id="description" name="description" value="{{$category->description}}">
+				<input type="text"class="form-control" id="description" name="description"></input>
 			</div>
-			<button class="btn btn-success">Edit Category</button>
+			<button class="btn btn-success">Create Category Status</button>
 		</form>	
 	</div>
 </div>

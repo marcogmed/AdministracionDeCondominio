@@ -28,28 +28,28 @@ Route::get('/categoryEvents', array(
 ));
 
 Route::post('/save-category', array( 
-'as'=>'saveCategory',
+'as'=>'saveEventCategory',
 'uses'=> 'CategoryEventController@save'
 ));
 
 Route::get('/create-Category', array(
-	'as'=> 'createCategory',
+	'as'=> 'createEventCategory',
 	'uses'=> 'CategoryEventController@create'
 ));
 
 Route::get('/edit-Category/{category}', array(
-	'as'=> 'editCategoryEvent',
+	'as'=> 'editEventCategory',
 	//'middleware' => 'auth',
 	'uses'=>'CategoryEventController@edit'
 ));
 
 Route::post('/update-category/{category}', array(
-	'as'=> 'updateCategory',
+	'as'=> 'updateEventCategory',
 	'uses'=> 'CategoryEventController@update'
 ));
 
 Route::get('/delete-category/{category}', array (
-	'as' => 'deleteCategory',
+	'as' => 'deleteEventCategory',
 	'uses' => 'CategoryEventController@destroy'
 ));
 
@@ -65,6 +65,61 @@ Route::get('financeCategory', array(
 Route::get('/create-FinanceCategory', array(
 	'as'=> 'createFinanceCategory',
 	'uses'=> 'CategoryFinanceMoveController@create'
+));
+
+Route::post('/save-category', array( 
+'as'=>'saveFinanceCategory',
+'uses'=> 'CategoryFinanceMoveController@save'
+));
+
+Route::get('/edit-Category/{category}', array(
+	'as'=> 'editFinanceCategory',
+	//'middleware' => 'auth',
+	'uses'=>'CategoryFinanceMoveController@edit'
+));
+
+Route::post('/update-category/{category}', array(
+	'as'=> 'updateFinanceCategory',
+	'uses'=> 'CategoryFinanceMoveController@update'
+));
+
+Route::get('/delete-category/{category}', array (
+	'as' => 'deleteFinanceCategory',
+	'uses' => 'CategoryFinanceMoveController@destroy'
+));
+
+//******************** Category Status ********************
+
+Route::get('statusCategory', array(
+	'as'=>'statusCategory',
+	//'middleware' => 'auth',
+	'uses' => 'CategoryStatusController@index' 
+));
+
+Route::get('/create-FinanceCategory', array(
+	'as'=> 'createStatusCategory',
+	'uses'=> 'CategoryStatusController@create'
+));
+
+Route::post('/save-category', array( 
+'as'=>'saveStatusCategory',
+'uses'=> 'CategoryStatusController@save'
+));
+
+Route::get('/edit-Category/{category}', array(
+	'as'=> 'editStatusCategory',
+	//'middleware' => 'auth',
+	'uses'=>'CategoryStatusController@edit'
+));
+
+Route::post('/update-category/{category}', array(
+	'as'=> 'updateStatusCategory',
+	'uses'=> 'CategoryStatusController@update'
+));
+
+Route::get('/delete-category/{category}', array (
+	'as' => 'deleteStatusCategory',
+	'uses' => 'CategoryStatusController@destroy'
 ));
 
 //****************** Role *******************

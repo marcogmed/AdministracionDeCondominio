@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="container">
-  <h2>Finance Categories <a href="{{route('createFinanceCategory')}}"class="btn btn-success"><i class="fas fa-plus"></i></a>
+  <h2>Status Categories <a href="{{route('createStatusCategory')}}"class="btn btn-success"><i class="fas fa-plus"></i></a>
         
 
         <div class="box">
@@ -22,20 +22,20 @@
     <table class="table table-hover">
       <thead class="thead-dark">
         <tr>
-          <th>Category Description</th>
+          <th>Status Category Description</th>
   </div>
 
         </tr>
-        @foreach ($catFinMov as $categoryFinance)
+        @foreach ($catStatus as $categoryStatus)
         
           <tr>
-          <td> {{ $categoryFiance->description }}</td>
+          <td> {{ $categoryStatus->description }}</td>
           <td> 
-            <a href="{{route('editFinanceCategory', ['categoryFinance_id'=>$categoryFinance->id])}}" class="btn btn-primary">Edit</a>
+            <a href="{{route('editStatusCategory', ['categoryStatus_id'=>$categoryStatus->id])}}" class="btn btn-primary">Edit</a>
             &nbsp;
-            <a href="#deleteModal{{$categoryFinance->id}}" data-toggle="modal" class="btn btn-danger">Delete</a>
+            <a href="#deleteModal{{$categoryStatus->id}}" data-toggle="modal" class="btn btn-danger">Delete</a>
                         <!-- Modal -->
-                        <div class="modal fade" id="deleteModal{{$categoryFinance->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="deleteModal{{$categoryStatus->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
                               <div class="modal-header">
@@ -45,11 +45,11 @@
                                 </button>
                               </div>
                               <div class="modal-body">
-                                Do you really wan't to delete this category: <p><b>{{$categoryFinance-> description}}</b></p>
+                                Do you really wan't to delete this category status: <p><b>{{$categoryStatus-> description}}</b></p>
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
-                                <a href="{{route('deleteFinanceCategory',['categoryFinance_id'=> $categoryFinance->id])}}"class="btn btn-danger">Delete</a>
+                                <a href="{{route('deleteStatusCategory',['categoryStatus_id'=> $categoryStatus->id])}}"class="btn btn-danger">Delete</a>
                               </div>
                             </div>
                           </div>
@@ -59,7 +59,7 @@
       @endforeach
       </thead>
     </table>  
-    {{ $catFinMov-> links()}}
+    {{ $catStatus-> links()}}
 </div>
 
 @endsection

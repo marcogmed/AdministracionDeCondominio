@@ -14,7 +14,9 @@ class CategoryStatusController extends Controller
      */
     public function index()
     {
-        //
+        $catStatus = CategoryStatus::orderBy('description')->paginate(7);
+
+        return view('categoryStatus.listCategoryStatus', compact('catStatus'));
     }
 
     /**
@@ -24,7 +26,22 @@ class CategoryStatusController extends Controller
      */
     public function create()
     {
-        //
+        return view('categoryStatus.createCategoryStatus');
+    }
+
+    public function save(Request $request)
+    {
+        $validate = $this->validate($request, [
+            'description' => 'required'
+        ]);
+        $categoryStatus = new categoryStatus();
+        $categoryStatus->description = $request->input('description');
+        //$categoryStatus->user_id = 1;
+        $vcategoryStatus->save();
+
+        return redirect()->route('statusCategory')->with(array(
+            'message'=> 'Category Status Created!'
+        ));
     }
 
     /**
@@ -57,7 +74,7 @@ class CategoryStatusController extends Controller
      */
     public function edit(CategoryStatus $categoryStatus)
     {
-        //
+        return view('categoryStatus.editCategoryStatus', compact('categoryStatus'));
     }
 
     /**
@@ -69,7 +86,18 @@ class CategoryStatusController extends Controller
      */
     public function update(Request $request, CategoryStatus $categoryStatus)
     {
-        //
+        $validate   = $this->validate($request, [
+            'description' => 'required'
+            ]);
+
+        $categoryStatusUpdate = CategoryStatus::findOrFail($video->id);
+        $categoryStatusUpdate-> description = $request-> input('description');
+
+        $categoryStatusUpdate->update();
+
+        return redirect()->route('statusCategory')->with(array(
+            'messaage'=> 'Category Status updated!'
+        ));
     }
 
     /**
@@ -80,6 +108,11 @@ class CategoryStatusController extends Controller
      */
     public function destroy(CategoryStatus $categoryStatus)
     {
-        //
+        $categoryStatusDelete = CategoryStatus::find($categoryStatus->id);
+        $categoryStatusDelete-> delete();
+
+        return redirect()->route('statusCategory')->with(array(
+            'message' => 'Category Status Deleted!'
+        ));
     }
 }

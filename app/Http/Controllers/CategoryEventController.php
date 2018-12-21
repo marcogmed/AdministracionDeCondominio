@@ -14,9 +14,9 @@ class CategoryEventController extends Controller
      */
     public function index()
     {
-        $categoriesevents = CategoryEvent::orderBy('description')->paginate(7);
+        $categoriesEvents = CategoryEvent::orderBy('description')->paginate(7);
 
-        return view('categoryEvent.list', compact('categoriesevents'));
+        return view('categoryEvent.list', compact('categoriesEvents'));
     }
 
     /**
@@ -27,7 +27,7 @@ class CategoryEventController extends Controller
     public function create()
     {
          
-        return view('categoryevent.create');
+        return view('categoryEvent.create');
     }
 
 
@@ -40,8 +40,8 @@ class CategoryEventController extends Controller
         $categoryevent->description = $request->input('description');
         $categoryevent->save();
 
-        return redirect()->route('categories')->with(array(
-            'message'=> 'New categoryevent Submitted!'
+        return redirect()->route('categoryEvent')->with(array(
+            'message'=> 'New category Event Submitted!'
         ));
     }
 
@@ -75,7 +75,7 @@ class CategoryEventController extends Controller
      */
     public function edit(categoryevent $categoryevent)
     {
-        return view('categoryevent.edit', compact('categoryevent'));
+        return view('categoryEvent.edit', compact('categoryevent'));
     }
 
     /**
@@ -91,12 +91,12 @@ class CategoryEventController extends Controller
             'description' => 'required'
             ]);
 
-        $cat_up = categoryevent::findOrFail($categoryevent->id);
+        $cat_up = CategoryEvent::findOrFail($categoryevent->id);
         $cat_up-> description = $request-> input('description');
 
         $cat_up->update();
 
-        return redirect()->route('categoryevent')->with(array(
+        return redirect()->route('categoryEvent')->with(array(
             'messaage'=> 'The categoryevent Has Been Updated!'
         ));
     }
@@ -109,10 +109,10 @@ class CategoryEventController extends Controller
      */
     public function destroy(categoryevent $categoryevent)
     {
-         $categoryeventDelete = categoryevent::find($categoryevent->id);
+        $categoryeventDelete = CategoryEvent::find($categoryevent->id);
         $categoryeventDelete-> delete();
 
-        return redirect()->route('categories')->with(array(
+        return redirect()->route('categoryEvent')->with(array(
             'message' => 'categoryevent Deleted!'
         ));
     }

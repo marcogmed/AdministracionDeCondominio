@@ -25,7 +25,23 @@ class CategoryFinanceMoveController extends Controller
      */
     public function create()
     {
-        //
+        return view('FinanceCategory.createFinanceCategory');
+    }
+
+    public function save(Request $request)
+    {
+        $validate = $this->validate($request, [
+            'description' => 'required'
+        ]);
+
+        $financeCategory = new financeCategory();
+        $financeCategory->description = $request->input('description');
+        //$video->user_id = 1;
+        $financeCategory->save();
+
+        return redirect()->route('finaceCategory')->with(array(
+            'message'=> 'Category Created!'
+        ));
     }
 
     /**
@@ -58,7 +74,7 @@ class CategoryFinanceMoveController extends Controller
      */
     public function edit(CategoryFinanceMove $categoryFinanceMove)
     {
-        //
+        return view('FinanceCategory.editFinanceCategory', compact('categoryFinanceMove'));
     }
 
     /**
@@ -70,7 +86,18 @@ class CategoryFinanceMoveController extends Controller
      */
     public function update(Request $request, CategoryFinanceMove $categoryFinanceMove)
     {
-        //
+        $validate   = $this->validate($request, [
+            'description' => 'required'
+            ]);
+
+        $financeCategoryupdate = CategoryFinanceMove::findOrFail($categoryFinanceMove->id);
+        $financeCategoryupdate-> description = $request-> input('description');
+
+        $financeCategoryupdate->update();
+
+        return redirect()->route('financeCategory')->with(array(
+            'messaage'=> 'Fiance Category Updated!'
+        ));
     }
 
     /**
@@ -81,6 +108,11 @@ class CategoryFinanceMoveController extends Controller
      */
     public function destroy(CategoryFinanceMove $categoryFinanceMove)
     {
-        //
+        $categoryFinanceDelete = CategoryFinanceMove::find($categoryFinanceMove->id);
+        $categoryFinanceDelete-> delete();
+
+        return redirect()->route('financeCategory')->with(array(
+            'message' => 'Finance Category Deleted!'
+        ));
     }
 }
