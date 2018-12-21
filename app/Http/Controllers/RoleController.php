@@ -14,7 +14,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $roles = role::all();
+        return view('rol.list', compact('roles'));
     }
 
     /**
@@ -25,6 +26,7 @@ class RoleController extends Controller
     public function create()
     {
         //
+        return view('rol.create');
     }
 
     /**
@@ -35,7 +37,16 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $this->validate($request, [
+            'description' => 'required'
+        ]);
+        $role = new role();
+        $role->description = $request->input('description');
+        $role->save();
+
+        return redirect()->route('roles')->with(array(
+            'message'=> 'Rol creado correctamente!'
+        ));
     }
 
     /**

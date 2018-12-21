@@ -66,3 +66,19 @@ Route::get('/create-FinanceCategory', array(
 	'as'=> 'createFinanceCategory',
 	'uses'=> 'CategoryFinanceMoveController@create'
 ));
+
+//****************** Role *******************
+Route::get('roles', array(
+	'as' => 'roles',
+	'uses' => 'RoleController@index'
+));
+
+Route::get('crear-rol', array (
+	'as' => 'createRole',
+	'uses' => 'RoleController@create'
+));
+
+Route::post('guardar-rol', array(
+	'as' => 'storeRole',
+	'uses' => 'RoleController@store'
+));
