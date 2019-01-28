@@ -98,7 +98,7 @@
                             <label for="divison_id" class="col-md-4 col-form-label text-md-right">{{ __('Fraccionamiento') }}</label>
 
                             <div class="col-md-6">
-                                <input id="divison_id" type="text" class="form-control{{ $errors->has('divison_id') ? ' is-invalid' : '' }}" name="divison_id" value="{{ old('divison_id') }}" required autofocus>
+                                <input id="divison_id" name="division_id" type="text" class="form-control{{ $errors->has('divison_id') ? ' is-invalid' : '' }}" name="divison_id" value="{{ old('divison_id') }}" required autofocus>
 
                                 @if ($errors->has('divison_id'))
                                     <span class="invalid-feedback" role="alert">
@@ -114,7 +114,7 @@
                             <label for="condominium_id" class="col-md-4 col-form-label text-md-right">{{ __('Condominio') }}</label>
 
                             <div class="col-md-6">
-                                <input id="condominium_id" type="text" class="form-control{{ $errors->has('condominium_id') ? ' is-invalid' : '' }}" name="condominium_id" value="{{ old('condominium_id') }}" required autofocus>
+                                <input id="condominium_id" name="condominium_id" type="text" class="form-control{{ $errors->has('condominium_id') ? ' is-invalid' : '' }}" name="condominium_id" value="{{ old('condominium_id') }}" required autofocus>
 
                                 @if ($errors->has('condominium_id'))
                                     <span class="invalid-feedback" role="alert">
@@ -161,13 +161,21 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
+                        <div class="from-group row">
+                            <label  for="inlineCheckbox1" class="col-md-4 col-form-label text-md-right">¿Es propietario?</label>
+                            <div class="col-md-6">
+                                
+                                <input class="form-control" type="checkbox" checked="checked">
+                                 
+                            </div>                           
+                        </div>
                         <fieldset class="form-group">
                             <div class="row">
                               <legend class="text-md-right col-form-label col-md-4 col-sm-2 pt-0">Rol</legend>
                               <div class="col-sm-10 col-md-8">
                                 @foreach($roles as $rol)
                                 <div class="form-check">
-                                  <input class="form-check-input" type="radio" name="gridRadios" id="{{ $rol->id }}" value="{{ $rol->id }}" checked>
+                                  <input class="form-check-input" type="radio" name="role_id" id="{{ $rol->id }}" value="{{ $rol->id }}" checked>
                                   <label class="form-check-label" for="gridRadios1">
                                     {{ $rol->description }}
                                   </label>

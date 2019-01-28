@@ -85,15 +85,13 @@ class RegisterController extends Controller
             'phone_number' => $data['phone_number'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-
-            /*'role_id'=> $data['role_id'],
+            'role_id'=> $data['role_id'],
             'division_id' => $data['division_id'],
             'condominium_id' => $data['condominium_id'],
-
             'is_owner'=> $data['is_owner'],
             'is_provider'=> $data ['is_provider'],
             'is_active'=> $data['is_active'],
-            */
+            
 
 
         ]);
