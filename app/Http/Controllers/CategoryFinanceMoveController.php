@@ -16,6 +16,7 @@ class CategoryFinanceMoveController extends Controller
     {
         $catFinMov = CategoryFinanceMove::orderBy ('description')->paginate(9);
         return view ('FinanceCategory.listFinanceCategory', compact('catFinMov'));
+        //echo "Dentro!!";
     }
 
     /**

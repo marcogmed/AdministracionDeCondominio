@@ -67,7 +67,7 @@ Route::get('/create-FinanceCategory', array(
 	'uses'=> 'CategoryFinanceMoveController@create'
 ));
 
-Route::post('/save-category', array( 
+Route::post('/save-finance-category', array( 
 'as'=>'saveFinanceCategory',
 'uses'=> 'CategoryFinanceMoveController@save'
 ));
@@ -96,12 +96,12 @@ Route::get('statusCategory', array(
 	'uses' => 'CategoryStatusController@index' 
 ));
 
-Route::get('/create-FinanceCategory', array(
+Route::get('/create-StatusCategory', array(
 	'as'=> 'createStatusCategory',
 	'uses'=> 'CategoryStatusController@create'
 ));
 
-Route::post('/save-category', array( 
+Route::post('/save-status-category', array( 
 'as'=>'saveStatusCategory',
 'uses'=> 'CategoryStatusController@save'
 ));
