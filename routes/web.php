@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-//para poder subir...
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -72,7 +72,7 @@ Route::post('/save-finance-category', array(
 'uses'=> 'CategoryFinanceMoveController@save'
 ));
 
-Route::get('/edit-Category/{category}', array(
+Route::post('/edit-Category/{category}', array(
 	'as'=> 'editFinanceCategory',
 	//'middleware' => 'auth',
 	'uses'=>'CategoryFinanceMoveController@edit'
@@ -87,6 +87,8 @@ Route::get('/delete-category/{category}', array (
 	'as' => 'deleteFinanceCategory',
 	'uses' => 'CategoryFinanceMoveController@destroy'
 ));
+
+
 
 //******************** Category Status ********************
 
@@ -117,7 +119,7 @@ Route::post('/update-category/{category}', array(
 	'uses'=> 'CategoryStatusController@update'
 ));
 
-Route::get('/delete-category/{category}', array (
+Route::get('/delete-category-status/{category}', array (
 	'as' => 'deleteStatusCategory',
 	'uses' => 'CategoryStatusController@destroy'
 ));
