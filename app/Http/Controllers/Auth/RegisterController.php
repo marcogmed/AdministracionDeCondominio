@@ -77,6 +77,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $is_provider = ($data ['role_id'] == 3) ? 1 : 0 ;
+        $is_owner = ($data['is_owner'] == 'on') ? 1: 0;
         return User::create([
             'name' => $data['name'],
             'lastname'=> $data['lastname'],
@@ -88,9 +90,9 @@ class RegisterController extends Controller
             'role_id'=> $data['role_id'],
             'division_id' => $data['division_id'],
             'condominium_id' => $data['condominium_id'],
-            'is_owner'=> $data['is_owner'],
-            'is_provider'=> $data ['is_provider'],
-            'is_active'=> $data['is_active'],
+            'is_owner'=> $is_owner,
+            'is_provider'=> $is_provider,
+            'is_active'=> 1,
             
 
 
