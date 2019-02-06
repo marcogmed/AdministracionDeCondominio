@@ -99,7 +99,7 @@
 
                             <div class="col-md-6">
                                 <input id="divison_id" name="division_id" type="text" class="form-control{{ $errors->has('divison_id') ? ' is-invalid' : '' }}" name="divison_id" value="{{ old('divison_id') }}" required autofocus>
-
+                                {!!Form::select('division_id_2', ['L' => 'Large', 'S' => 'Small'], null, ['placeholder' => 'Pick a size...', 'id' => 'division_id_2', 'class' => 'form-control'])!!}
                                 @if ($errors->has('divison_id'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('division_id') }}</strong>
@@ -116,6 +116,7 @@
                             <div class="col-md-6">
                                 <input id="condominium_id" name="condominium_id" type="text" class="form-control{{ $errors->has('condominium_id') ? ' is-invalid' : '' }}" name="condominium_id" value="{{ old('condominium_id') }}" required autofocus>
 
+                               
                                 @if ($errors->has('condominium_id'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('condominium_id') }}</strong>
@@ -165,22 +166,15 @@
                             <label  for="inlineCheckbox1" class="col-md-4 col-form-label text-md-right">¿Es propietario?</label>
                             <div class="col-md-6">
                                 
-                                <input class="form-control" type="checkbox" checked="checked">
+                                <input class="form-control" name = 'is_owner' id="is_owner" type="checkbox" checked="checked">
                                  
                             </div>                           
                         </div>
                         <fieldset class="form-group">
                             <div class="row">
                               <legend class="text-md-right col-form-label col-md-4 col-sm-2 pt-0">Rol</legend>
-                              <div class="col-sm-10 col-md-8">
-                                @foreach($roles as $rol)
-                                <div class="form-check">
-                                  <input class="form-check-input" type="radio" name="role_id" id="{{ $rol->id }}" value="{{ $rol->id }}" checked>
-                                  <label class="form-check-label" for="gridRadios1">
-                                    {{ $rol->description }}
-                                  </label>
-                                </div>
-                                @endforeach
+                              <div class="col-sm-10 col-md-8">                                
+                                {!!Form::select('role_id',$roles , null, ['placeholder' => 'Selecciona un Rol...', 'class' => 'form-control' ])!!} 
                               </div>
                             </div>
                           </fieldset>
