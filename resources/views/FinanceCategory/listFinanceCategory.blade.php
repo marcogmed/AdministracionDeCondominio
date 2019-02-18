@@ -21,8 +21,7 @@
         <tr>
           <th>Category Description</th>
         </tr>
-        </thead>
-        <tbody id="myTable">
+
         @foreach ($catFinMov as $categoryFinance)
         
           <tr>
@@ -54,8 +53,7 @@
           </td>
       </tr>
       @endforeach
-      </tbody>
-      
+            
     </table>  
     {{ $catFinMov-> links()}}
 </div>

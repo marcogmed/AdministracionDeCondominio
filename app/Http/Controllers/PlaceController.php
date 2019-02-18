@@ -14,7 +14,8 @@ class PlaceController extends Controller
      */
     public function index()
     {
-        //
+        $placescontroller = Place::orderBy('description')-> paginate(9);
+        return view('Places.listPlaces', compact('placescontroller'));
     }
 
     /**
@@ -24,7 +25,7 @@ class PlaceController extends Controller
      */
     public function create()
     {
-        //
+        return view('Places.createPlaces');
     }
 
     /**
@@ -35,7 +36,20 @@ class PlaceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $this-> validte($request, [
+            'description'=> 'required',
+            'img_url' => 'required'
+        ]);
+
+        $placeStore = new placeStore();
+        $placeStore->description = $request->input('description');
+        $placeStore->img_url = $request->input('img_url');
+        //user validation
+        $placeStore->save();
+
+        return redirect()-> route('placeStore')-> with(array(
+            'message'=> 'Place added!'
+        ));
     }
 
     /**
