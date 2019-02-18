@@ -5,11 +5,8 @@
   <h2>Finance Categories <a href="{{route('createFinanceCategory')}}"class="btn btn-success"><i class="fas fa-plus"></i></a>
         
 
-        <div class="box">
-            <div class="container-1">
-                <input type="search" id="search" placeholder="search...">
-            </div>
-        </div>
+        <input class="form-control" id="myInput" type="text" placeholder="Buscar..">
+
     </h2>
 
 
@@ -23,13 +20,12 @@
       <thead class="thead-dark">
         <tr>
           <th>Category Description</th>
-  </div>
-
         </tr>
+
         @foreach ($catFinMov as $categoryFinance)
         
           <tr>
-          <td> {{ $categoryFiance->description }}</td>
+          <td> {{ $categoryFinance->description }}</td>
           <td> 
             <a href="{{route('editFinanceCategory', ['categoryFinance_id'=>$categoryFinance->id])}}" class="btn btn-primary">Edit</a>
             &nbsp;
@@ -57,9 +53,23 @@
           </td>
       </tr>
       @endforeach
-      </thead>
+            
     </table>  
     {{ $catFinMov-> links()}}
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script>
+$(document).ready(function(){
+  
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
 @endsection

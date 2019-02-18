@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
+
 
 class CategoryFinanceMoveSeeder extends Seeder
 {
@@ -11,6 +13,26 @@ class CategoryFinanceMoveSeeder extends Seeder
      */
     public function run()
     {
-        
+        //
+        $faker = Faker::create();
+
+        for ($i=0; $i < 2 ; $i++) { 
+        	\DB::table('category_finance_moves')->insert(array(
+        		'description' => $faker->word,
+        		'sign' => '-',
+        		'created_at' => date('Y-m-d H:m:s'),
+           		'updated_at' => date('Y-m-d H:m:s')
+        	));
+        }
+
+        for ($i=0; $i < 2 ; $i++) { 
+        	DB::table('category_finance_moves')->insert(array(
+        		'description' => $faker->word,
+        		'sign' => '+',
+        		'created_at' => date('Y-m-d H:m:s'),
+           		'updated_at' => date('Y-m-d H:m:s')
+        	));
+        }
+
     }
 }

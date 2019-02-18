@@ -2,13 +2,9 @@
 @section('content')
 
 <div class="container">
-  <h2>Category Events <a href="{{route('createEventCategory')}}"class="btn btn-success">+</a>
-        
-        <div class="box">
-            <div class="container-1">
-                <input type="search" id="search" placeholder="search...">
-            </div>
-        </div>
+  <h2>Category Events <a href="{{route('createEventCategory')}}"class="btn btn-success"><i class="fas fa-plus"></i></a>
+
+                <input class="form-control" id="myInput" type="text" placeholder="Buscar..">
     </h2>
 
 
@@ -24,9 +20,8 @@
       <thead class="thead-dark">
         <tr>
           <th>Category Event Description</th>
-  </div>
-
         </tr>
+
         @foreach ($categoriesEvents as $categoryEvent)
         
           <tr>
@@ -62,5 +57,20 @@
     </table>  
     {{ $categoriesEvents-> links()}}
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script>
+$(document).ready(function(){
+  
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
 
 @endsection
