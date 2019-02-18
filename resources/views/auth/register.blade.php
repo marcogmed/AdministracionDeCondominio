@@ -98,8 +98,10 @@
                             <label for="divison_id" class="col-md-4 col-form-label text-md-right">{{ __('Fraccionamiento') }}</label>
 
                             <div class="col-md-6">
+                                <!--
                                 <input id="divison_id" name="division_id" type="text" class="form-control{{ $errors->has('divison_id') ? ' is-invalid' : '' }}" name="divison_id" value="{{ old('divison_id') }}" required autofocus>
-                                {!!Form::select('division_id_2', ['L' => 'Large', 'S' => 'Small'], null, ['placeholder' => 'Pick a size...', 'id' => 'division_id_2', 'class' => 'form-control'])!!}
+                                -->
+                                {!!Form::select('division_id', $divisions , null, ['placeholder' => 'Seleccione un Fraccionamiento...', 'id' => 'division_id', 'class' => 'form-control'])!!}
                                 @if ($errors->has('divison_id'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('division_id') }}</strong>
@@ -109,13 +111,14 @@
                         </div>
 
                         <!--Condominium-->
-
                         <div class="form-group row">
                             <label for="condominium_id" class="col-md-4 col-form-label text-md-right">{{ __('Condominio') }}</label>
 
                             <div class="col-md-6">
+                                <!--
                                 <input id="condominium_id" name="condominium_id" type="text" class="form-control{{ $errors->has('condominium_id') ? ' is-invalid' : '' }}" name="condominium_id" value="{{ old('condominium_id') }}" required autofocus>
-
+                                -->
+                                {!!Form::select('condominium_id', [''], null, ['placeholder' => 'Seleccione antes un Fraccionamiento...', 'id' => 'condominium_id', 'class' => 'form-control', 'disabled' => 'disabled'])!!}
                                
                                 @if ($errors->has('condominium_id'))
                                     <span class="invalid-feedback" role="alert">
@@ -170,14 +173,16 @@
                                  
                             </div>                           
                         </div>
+                        <!--
                         <fieldset class="form-group">
                             <div class="row">
                               <legend class="text-md-right col-form-label col-md-4 col-sm-2 pt-0">Rol</legend>
                               <div class="col-sm-10 col-md-8">                                
-                                {!!Form::select('role_id',$roles , null, ['placeholder' => 'Selecciona un Rol...', 'class' => 'form-control' ])!!} 
+                                
                               </div>
                             </div>
                           </fieldset>
+                        -->
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
@@ -191,4 +196,14 @@
         </div>
     </div>
 </div>
+<script
+			  src="https://code.jquery.com/jquery-2.2.4.min.js"
+			  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+			  crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function(){
+        console.log('Iniciando Jquery');
+    });
+
+</script>
 @endsection
