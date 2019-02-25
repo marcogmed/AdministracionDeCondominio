@@ -57,10 +57,14 @@ class RegisterController extends Controller
             'phone_number' => ['required', 'string', 'max:15'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
-
-            /*'role_id' => ['required', 'integer'],
             'division_id' => ['required', 'integer'],
             'condominium_id' => ['required', 'integer'],
+            'house_number' => ['required']
+            /*
+            
+            
+            
+            
            
             'is_owner' => ['required','tinyInteger','True'],
             'is_provider' => ['required','tinyInteger','False'],
@@ -76,9 +80,9 @@ class RegisterController extends Controller
      * @return \App\User
      */
     protected function create(array $data)
-    {
-        $is_provider = ($data ['role_id'] == 3) ? 1 : 0 ;
-        $is_owner = ($data['is_owner'] == 'on') ? 1: 0;
+    {       
+        //return dd($data); 
+        $is_owner = ($data['is_owner'] == 'on') ? 1: 0;        
         return User::create([
             'name' => $data['name'],
             'lastname'=> $data['lastname'],
@@ -86,12 +90,11 @@ class RegisterController extends Controller
             'house_number' => $data['house_number'],
             'phone_number' => $data['phone_number'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'role_id'=> $data['role_id'],
+            'password' => Hash::make($data['password']),            
             'division_id' => $data['division_id'],
             'condominium_id' => $data['condominium_id'],
             'is_owner'=> $is_owner,
-            'is_provider'=> $is_provider,
+            'is_provider'=> 0,
             'is_active'=> 1,
             
 

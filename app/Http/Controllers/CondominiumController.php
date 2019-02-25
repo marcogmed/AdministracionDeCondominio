@@ -82,4 +82,15 @@ class CondominiumController extends Controller
     {
         //
     }
+
+    public function condominiumOfDivision(Request $request, $division_id)
+    {
+        $condominiums = Condominium::where('division_id', $division_id)
+                                    ->pluck('description', 'id');
+        if ($request->ajax()) {
+            return response()->json($condominiums);
+        }else{
+            return dd($condominiums);
+        }                                    
+    }
 }
