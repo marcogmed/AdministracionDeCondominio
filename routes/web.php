@@ -151,7 +151,7 @@ Route::get('create-place', array(
 	'uses'=> 'PlaceController@create'
 ));
 
-Route::post('save-place', array(
-	'as' => 'savePlace',
-	'uses' => 'PlaceController@store'
+Route::post('upload-place', array(
+	'as' => 'uploadPlace',
+	'uses' => 'PlaceController@upload'
 ));

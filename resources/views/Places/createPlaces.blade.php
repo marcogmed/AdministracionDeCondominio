@@ -3,15 +3,15 @@
 
 <div class="container">
 	<div class=#page-header>
-		<h2>Add new Place</h2>
+		<h2>Agregar nuevo lugar</h2>
 	</div>
 
 	<div class="row">
-		<form method="post" action="{{route('savePlace')}}" class="col-lg-7">
+		<form method="post" action="{{route('uploadPlace')}}" class="col-lg-7" enctype="multipart/form-data">
 			{!! csrf_field() !!}
 
 			@if ($errors->any())
-				<div class="laert alert-danger">
+				<div class="alert alert-danger">
 					<ul>
 						@foreach($errors->all() as $error)
 						<li> {{error}}</li>
@@ -20,17 +20,24 @@
 				</div>
 			@endif
 
-			<div class="form-group">
-				<label for="Url">URL</label>
-				<input type="text" class="form-control" id="url" nmae="url"></input>
+			<div>
+				<h4 for="Url">Seleccionar Imagen</h4>
+
+				<br>
+
+					<input type='file' name='file' id='img_url'>
+					<!--<input type="submit" value="Add Place" name="submit">-->
+				</br>
+				<br>
+					<label for="descripcion">Descripción</label>
+				<input type="text" class="form-control" id="descripcion" nmae="descripcion"></input>
+				
+				</br>
+				<button class="btn btn-success">Agregar lugar</button>
+				<!--<input type="hidden" value="{{ csrf_token() }} " name="_token">-->
+
 			</div>
 
-			<div class="form-group">
-				<label for="descripcion">Descripción</label>
-				<input type="text" class="form-control" id="descripcion" nmae="descripcion"></input>
-			</div>
-			
-			<button class="btn btn-success">Add place</button>
 
 		</form>
 	</div>
