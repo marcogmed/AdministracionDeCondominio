@@ -156,4 +156,10 @@ Route::post('save-place', array(
 	'uses' => 'PlaceController@store'
 ));
 
+Route::post('upload-place', array(
+	'as' => 'uploadPlace',
+	'uses' => 'PlaceController@upload'
+
+));
+
 Route::get('condominiums/{division_id}', 'CondominiumController@condominiumOfDivision');

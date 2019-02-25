@@ -34,21 +34,29 @@ class PlaceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function upload(Request $request)
     {
-        $validate = $this-> validte($request, [
+        $validate = $this-> validate($request, [
             'description'=> 'required',
-            'img_url' => 'required'
+            'img_url' => 'required|image|mimes:jpeg,png,jpg|max:2048'
         ]);
 
-        $placeStore = new placeStore();
-        $placeStore->description = $request->input('description');
-        $placeStore->img_url = $request->input('img_url');
-        //user validation
-        $placeStore->save();
+        if (Input::hasFile('img_url')) {
 
-        return redirect()-> route('placeStore')-> with(array(
-            'message'=> 'Place added!'
+            $placeStorage = new placeStorage();
+            $placestorage->description = $request->input ('description');
+            $placeStorage = Input::file('img_url');
+            $placeStorage -> move('storage/app/public', $file->getClientOriginalName());
+        }
+
+        /*$placeStore = new placeStore();
+        $placeStore->description = $request->input('description');
+        $placeStore->img_url = $request->file('img_url')->store('img_url');
+        //user validation
+        $placeStore->save();*/
+
+        return redirect()-> route('places')-> with(array(
+            'message'=> 'Lugar Agregado!'
         ));
     }
 
