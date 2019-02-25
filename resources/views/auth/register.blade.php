@@ -97,9 +97,8 @@
                         <div class="form-group row">
                             <label for="divison_id" class="col-md-4 col-form-label text-md-right">{{ __('Fraccionamiento') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="divison_id" name="division_id" type="text" class="form-control{{ $errors->has('divison_id') ? ' is-invalid' : '' }}" name="divison_id" value="{{ old('divison_id') }}" required autofocus>
-                                {!!Form::select('division_id_2', ['L' => 'Large', 'S' => 'Small'], null, ['placeholder' => 'Pick a size...', 'id' => 'division_id_2', 'class' => 'form-control'])!!}
+                            <div class="col-md-6">                                
+                                {!!Form::select('division_id', $divisions, null, ['placeholder' => 'Seleccione un Fraccionamiento...', 'id' => 'division_id', 'class' => 'form-control', 'value' => old('division_id')])!!}
                                 @if ($errors->has('divison_id'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('division_id') }}</strong>
@@ -114,8 +113,10 @@
                             <label for="condominium_id" class="col-md-4 col-form-label text-md-right">{{ __('Condominio') }}</label>
 
                             <div class="col-md-6">
+                                <!--
                                 <input id="condominium_id" name="condominium_id" type="text" class="form-control{{ $errors->has('condominium_id') ? ' is-invalid' : '' }}" name="condominium_id" value="{{ old('condominium_id') }}" required autofocus>
-
+                                -->
+                                {!!Form::select('condominium_id',['' =>'Elija un Fraccionamiento para continuar ...'], null, ['id' => 'condominium_id', 'class' => 'form-control'])!!}
                                
                                 @if ($errors->has('condominium_id'))
                                     <span class="invalid-feedback" role="alert">
@@ -163,21 +164,25 @@
                             </div>
                         </div>
                         <div class="from-group row">
+                            <div class="col-md-12 offset-md-4">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" name='is_owner' id="is_owner" checked>
+                                    <label class="form-check-label" for="exampleCheck1">¿Es propietario de la casa?</label>                                                                        
+                                </div>   
+                            </div>    
+                            <!--
                             <label  for="inlineCheckbox1" class="col-md-4 col-form-label text-md-right">¿Es propietario?</label>
-                            <div class="col-md-6">
-                                
-                                <input class="form-control" name = 'is_owner' id="is_owner" type="checkbox" checked="checked">
-                                 
-                            </div>                           
-                        </div>
-                        <fieldset class="form-group">
-                            <div class="row">
-                              <legend class="text-md-right col-form-label col-md-4 col-sm-2 pt-0">Rol</legend>
-                              <div class="col-sm-10 col-md-8">                                
-                                {!!Form::select('role_id',$roles , null, ['placeholder' => 'Selecciona un Rol...', 'class' => 'form-control' ])!!} 
-                              </div>
-                            </div>
-                          </fieldset>
+                            <div class="col-md-6">                                
+                                <input class="form-check-input" name = 'is_owner' id="is_owner" type="checkbox" checked="checked">                                 
+                            </div>        
+                            
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                              </div>                   
+                            -->
+                        </div>                           
+                        <hr>                     
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
@@ -191,4 +196,49 @@
         </div>
     </div>
 </div>
+<script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function(){            
+        $('#division_id').change(function(){                        
+            $.ajax({
+                type: 'GET', //THIS NEEDS TO BE GET
+                url: '/condominiums/'+$(this).val(),
+                dataType: 'json',
+                success: function (data) {
+                    let $select = $('#condominium_id');
+                    $select.find('option').remove();  
+                    $('<option>').val('').text('Seleccione un Condominio...').appendTo($select);
+                    $.each(data, function (key, value) { 
+                        $('<option>').val(key).text(value).appendTo($select);
+                     })
+                    //console.log(data);
+
+                    /*
+                    $('#supervisor').val();
+                    $('#supervisor').val(data.name);*/
+                    //alert(data.name);
+                
+                    //container.append('<br>');
+                
+                },error:function(){ 
+                    console.log('Error en lectura de datos!');                        
+                }
+            });            
+        });
+        /*
+        $('#is_ow').on('click', function() {            
+            if ($('#is_ow').is(":checked")) {
+                $('#is_owner').val(1);                                    
+            }else{
+                $('#is_owner').val(0);                
+            }
+            console.log($('#is_owner').val());
+        })
+        */
+    });
+</script>
 @endsection
